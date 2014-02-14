@@ -6,4 +6,11 @@ module UsersHelper
     gravatar_url = "https://secure.gravatar.com/avatar/#{gravatar_id}?s=#{size}"
     image_tag(gravatar_url, alt: user.name, class: "gravatar")
   end
+
+  def add_skill_link name
+    link_to_function name , nil, id: "more skills" do |page|
+      page.insert_html :bottom, :skills, partial: 'skill_item' , object: UserSkill.new
+    end
+  end
+
 end

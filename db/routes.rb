@@ -3,20 +3,16 @@ Fmm1::Application.routes.draw do
 
   resources :sessions,  only: [:new, :create, :destroy]
   namespace :admin do
-    resources :users
-    resources :teams
-    resources :skills
-    resources :positions
-    resources :projects do
-      resources :user_position_in_projects
-    end
-  end
-    resources :skills
-    resources :positions
-    resources :users
-    resources :teams
-    resources :projects
 
+    resources :positions
+    resources :users
+    resources :teams
+    resources :skills
+    resources :projects
+  end
+  resources :users
+  resources :teams
+  resources :projects
   match '/help', to: 'static_pages#help', via: 'get'
   match '/about', to: 'static_pages#about' , via: 'get'
   match '/contact', to: 'static_pages#contact', via: 'get'

@@ -5,13 +5,12 @@
       <nav>
         <ul class="nav pull-right">
           <li><%= link_to "Home",  root_path %></li>
-          <li><%= link_to "Help",  help_path %></li>
-          <li><%= link_to "About", about_path%></li>
-          <li><%= link_to "Positions", admin_positions_path%></li>
-          <li><%= link_to "Projects", admin_projects_path%></li>
           <% if signed_in? %>
             <% if admin_user? current_user %>
               <li><%= link_to "Admin", admin_users_path  %></li>
+              <li><%= link_to "Positions", admin_positions_path%></li>
+              <li><%= link_to "Projects", admin_projects_path%></li>
+
                   <li id="fat-menu" class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                       Account <b class="caret"></b>
@@ -28,6 +27,8 @@
              <% end %>
               <% if member_user? current_user %>
                   <li><%= link_to "Member", current_user %></li>
+                  <li><%= link_to "Projects", projects_path%></li>
+                  <li><%= link_to "Team", teams_path%></li>
                   <li id="fat-menu" class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                       Account <b class="caret"></b>

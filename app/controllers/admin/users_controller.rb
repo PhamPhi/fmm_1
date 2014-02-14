@@ -6,10 +6,13 @@ class Admin::UsersController < ApplicationController
 
   def show
     @user = User.find params[:id]
+    @skills = @user.skills
+    @projects = @user.projects
   end
 
   def new
     @user = User.new
+    @user_skills= @user.user_skills.build
   end
 
   def create

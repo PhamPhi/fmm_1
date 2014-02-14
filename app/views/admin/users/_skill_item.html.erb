@@ -1,0 +1,6 @@
+<form class="form form-inline">
+   <%= collection_select(:skill, :id, Skill.all, :id, :name,class: "selectpicker") %>
+   <input type="text" value=" " class="input-small" placeholder="Number"/>
+   <b>Years</b>
+   <%= link_to 'Remove', '#' %>
+</form>

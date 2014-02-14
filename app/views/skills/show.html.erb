@@ -1,0 +1,9 @@
+<% provide(:title, @skill) %>
+<div class="ul">
+  <div class="span6 offset3">
+    <%= form_for @skill do |f| %>
+        <%= f.label :name %>
+        <%= @skill.name %>
+    <% end %>
+  </div>
+</div>
