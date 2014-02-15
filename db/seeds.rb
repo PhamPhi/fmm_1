@@ -1,15 +1,16 @@
 # TODO adding the list of users
-users_list= [ ['Larry Pham','larryritchie.ceo@gmail.com','Product Manager', '09/09/1989', 2, 'abcd1234!','abcd1234!'],
-              ['Kelly Chan','kellychan@gmail.com','Productive Supporter','30/03/1968', 1, 'abcd1234!','abcd1234!'],
-              ['Wei Ming','wei.ming@gmail.com','Software Engineer','11/02/1975', 1, 'abcd1234!','abcd1234!'],
-              ['JingWei Teoh','Jingwei.teoh@gmail.com','Software Engineer','25/02/1984', 1, 'abcd1234!','abcd1234!'],
-              ['Walter Teoh','walter.teoh@gmail.com','Product Manager','20/04/1957', 2, 'abcd1234!','abcd1234!'],
-              ['Kelly Keong','kelly.keong@gmail.com','Software Engineer','30/03/1972', 1, 'abcd1234!','abcd1234!'],
-              ['Jing Chan Toeh','jingchan.teoh@gmail.com','Product Manager','20/08/1990', 2, 'abcd1234!','abcd1234!'],
-              ['CheDinhSon','chedinhson@gmail.com','Software Engineer','30/03/1972', 1, '123456','123456'],
-              ['SonCheDinh','sonchedinh@gmail.com','Software Engineer','30/03/1972', 2, '123456','123456'] ]
+users_list= [ ['Larry Pham','larryritchie.ceo@gmail.com','Product Manager', '09/09/1989', 2, 'abcd1234!','abcd1234!',1,1],
+              ['Kelly Chan','kellychan@gmail.com','Productive Supporter','30/03/1968', 1, 'abcd1234!','abcd1234!',2,1],
+              ['Wei Ming','wei.ming@gmail.com','Software Engineer','11/02/1975', 1, 'abcd1234!','abcd1234!',2,0],
+              ['JingWei Teoh','Jingwei.teoh@gmail.com','Software Engineer','25/02/1984', 1, 'abcd1234!','abcd1234!',2,0],
+              ['Walter Teoh','walter.teoh@gmail.com','Product Manager','20/04/1957', 2, 'abcd1234!','abcd1234!',1,0],
+              ['Kelly Keong','kelly.keong@gmail.com','Software Engineer','30/03/1972', 1, 'abcd1234!','abcd1234!',2,0],
+              ['Jing Chan Toeh','jingchan.teoh@gmail.com','Product Manager','20/08/1990', 2, 'abcd1234!','abcd1234!',1,0],
+              ['CheDinhSon','chedinhson@gmail.com','Software Engineer','30/03/1972', 1, '123456','123456',1,0],
+              ['SonCheDinh','sonchedinh@gmail.com','Software Engineer','30/03/1972', 2, '123456','123456',2,0] ]
 users_list.each do |user|
-  User.create(name: user[0], email: user[1], profile: user[2], birth_date: user[3], permission: user[4], password: user[5], password_confirmation: user[6])
+  User.create(name: user[0], email: user[1], profile: user[2], birth_date: user[3], permission: user[4], password: user[5], password_confirmation: user[6],
+              team_id: user[7], leader_flag: user[8])
 end
 
 # TODO adding the list skill
@@ -72,3 +73,30 @@ user_position_in_project_list.each do |upip|
                               project_id: upip[0])
 end
 
+user_skill_list= [
+    [1,1,4,3],
+    [1,2,2,2],
+    [1,5,4,3],
+    [1,6,4,3],
+    [2,1,4,3],
+    [2,1,3,3],
+    [2,3,4,5],
+    [2,4,5,6],
+    [3,1,4,3],
+    [3,2,2,2],
+    [4,1,2,2],
+    [4,2,2,2],
+    [5,5,2,2],
+    [5,3,4,5],
+    [5,4,2,2],
+    [6,1,5,6],
+    [6,2,5,6],
+    [6,3,4,5],
+    [7,1,3,4],
+    [7,2,5,6],
+    [7,3,4,5]
+]
+user_skill_list.each do |item|
+  UserSkill.create(user_id: item[0], skill_id: item[1], level: item[2],
+                   used_year_number: item[3])
+end

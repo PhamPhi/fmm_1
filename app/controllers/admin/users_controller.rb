@@ -6,10 +6,16 @@ class Admin::UsersController < ApplicationController
 
   def show
     @user = User.find params[:id]
+    @skills = @user.skills
+    @projects = @user.projects
   end
 
   def new
     @user = User.new
+    @skills = Skill.all
+    @skills.each do |skill|
+      @user.user_skills.build skill_id: skill.id
+    end
   end
 
   def create
@@ -54,7 +60,9 @@ class Admin::UsersController < ApplicationController
   private
   def user_params
     params.require(:user).permit(:name, :email, :birth_date, :permission,
-                                                :password, :password_confirmation, :profile)
+                                                :password, :password_confirmation, :profile,
+                                               user_skills_attributes: [:checked_skill, :user_id, :skill_id,
+                                                                        :level,:used_year_number])
   end
 
 end

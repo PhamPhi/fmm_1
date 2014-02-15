@@ -12,13 +12,59 @@
 </div>
 <div class="row">
   <div class="span6 offset3">
-    <%= form_for(@user) do |f| %>
+    <%= form_for @user do |f| %>
         <%= f.label :name %>
         <%= @user.name %>
         <%= f.label :email %>
         <%= @user.email%>
         <%= f.label :profile%>
         <%= @user.profile%>
+        <label>Current Team</label>
+        <% if !@user.team_id.nil?  %>
+        <b><%=link_to @user.team.name, admin_teams_path(@user.team) %></b>
+        <% end %>
     <% end %>
   </div>
+  <div class="span4">
+    <h3>Skills</h3>
+    <table class="table table-striped table-condensed">
+      <thead>
+      <th>Skills</th>
+      <th>Experiences</th>
+      </thead>
+      <% @skills.each do |skill| %>
+          <tbody>
+          <tr><td><b><%= link_to skill.name, admin_skills_path(skill) %></b></td>
+            <td><b><%= UserSkill.find_by_skill_id(skill.id).level%> "Years"</b></td>
+          </tr>
+          </tbody>
+      <% end %>
+    </table>
+  </div>
+  <% if !@user.projects.nil? %>
+  <div class="span6">
+    <% @projects.each do |project| %>
+        <p>Having at </p>
+          <%=(Position.find(UserPositionInProject.find_by(project.id))).name %>
+        <h3>Projects</h3>
+        <table class="table table-striped table-condensed">
+          <thead>
+          <th>Projects</th>
+          <th>Abbreviation</th>
+          <th>Start Date</th>
+          <th>End Date</th>
+          </thead>
+
+          <tbody>
+          <tr>
+            <td><b><%= link_to project.name,admin_projects_path(project)%></b></td>
+            <td><b><%= project.abbreviation %></b></td>
+            <td><b><%= project.startdate.strftime('%d/%m/%Y') %></b></td>
+            <td><b><%= project.enddate.strftime('%d/%m/%Y') %></b></td>
+          </tr>
+          </tbody>
+    <% end %>
+    </table>
+  </div>
+  <% end %>
 </div>

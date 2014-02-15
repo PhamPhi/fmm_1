@@ -2,7 +2,11 @@ class User < ActiveRecord::Base
   
   has_many :user_position_in_projects
   has_many :projects, through: :user_position_in_projects
-  
+  has_many :skills, through: :user_skills
+  has_many :user_skills, dependent: :destroy
+  accepts_nested_attributes_for :user_skills,reject_if: -> attrs { attrs["checked_skill"] == '0'},allow_destroy: true
+
+  has_many :positions , through: :user_position_in_projects
   belongs_to :team
   
   attr_accessor :validate_password

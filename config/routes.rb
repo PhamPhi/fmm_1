@@ -19,8 +19,9 @@ Fmm1::Application.routes.draw do
       end
     end
   end
-
-  resources :users, only: [:show, :update]
+  resources :teams
+  resources :projects
+  resources :users, only: [:show, :update, :edit]
   match '/help', to: 'static_pages#help', via: 'get'
   match '/about', to: 'static_pages#about' , via: 'get'
   match '/contact', to: 'static_pages#contact', via: 'get'
